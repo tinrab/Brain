@@ -2,36 +2,30 @@
 {
 	public static class NeuronFactory
 	{
-		public static Neuron CreateInputNeuron(IActivationFunction activation)
+		public static Neuron CreateInputNeuron(int index)
 		{
-			return new Neuron {
-				Activation = activation
-			};
+			return new InputNeuron(index);
 		}
 
 		public static Neuron CreateHiddenNeuron(IActivationFunction activation)
 		{
 			var n = new Neuron {
+				Output = double.NaN,
+				Error = double.NaN,
 				Activation = activation
 			};
-
 			SynapseFactory.Link(CreateBiasNeuron(), n);
-
 			return n;
 		}
 
-		public static Neuron CreateOutputNeuron()
+		public static Neuron CreateOutputNeuron(IActivationFunction activation)
 		{
-			return new Neuron {
-				Activation = ActivationFunction.Linear
-			};
+			return CreateHiddenNeuron(activation);
 		}
 
 		public static Neuron CreateBiasNeuron()
 		{
-			return new Neuron {
-				Output = 1.0
-			};
+			return new BiasNeuron();
 		}
 	}
 }

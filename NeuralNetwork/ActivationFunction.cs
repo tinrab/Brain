@@ -51,7 +51,6 @@
 		public double Derivative(double x)
 		{
 			var y = Compute(x);
-
 			return y * (1.0 - y);
 		}
 	}
