@@ -40,6 +40,12 @@
 			set { _values[row][column] = value; }
 		}
 
+		public Vector this[int row]
+		{
+			get { return new Vector(_values[row]); }
+			set { _values[row] = value.ToArray(); }
+		}
+
 		public int Rows
 		{
 			get { return _values.Length; }
@@ -70,6 +76,41 @@
 		{
 			for (var i = 0; i < Rows; i++) {
 				_values[i] = Util.RemoveElement(_values[i], index);
+			}
+		}
+
+		public Matrix Take(int rows)
+		{
+			var m = new Matrix(rows, Columns);
+
+			for (int i = 0; i < rows; i++) {
+				m[i] = GetRow(i);
+			}
+
+			return m;
+		}
+
+		public Matrix Skip(int rows)
+		{
+			var n = Rows - rows;
+			var m = new Matrix(n, Columns);
+
+			for (int i = 0; i < n; i++) {
+				m[i] = GetRow(rows + i);
+			}
+
+			return m;
+		}
+
+		public void ShuffleRows()
+		{
+			var n = Rows;
+			while (n > 1) {
+				n--;
+				var k = Util.RandomInt(n + 1);
+				var row = _values[k];
+				_values[k] = _values[n];
+				_values[n] = row;
 			}
 		}
 	}

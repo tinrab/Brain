@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -49,6 +50,13 @@ namespace Brain.Math
 			for (var i = 0; i < Values.Length; i++) {
 				yield return Values[i];
 			}
+		}
+
+		public double[] ToArray()
+		{
+			var arr = new double[Values.Length];
+			Array.Copy(Values, arr, arr.Length);
+			return arr;
 		}
 
 		public double Variance()
