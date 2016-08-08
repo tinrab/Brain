@@ -1,6 +1,6 @@
 ﻿using Brain.Math;
 
-namespace Brain
+namespace Brain.Math
 {
 	public static class RegressionError
 	{

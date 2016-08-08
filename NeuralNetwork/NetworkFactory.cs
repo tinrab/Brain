@@ -3,50 +3,59 @@
 	public static class NetworkFactory
 	{
 		/// <summary>
-		///     Create a multilayer perceptron
+		///    Create a multilayer perceptron
 		/// </summary>
-		/// <param name="layerSizes">Number of neurons per layer</param>
+		/// <param name="inputSize">Input size</param>
+		/// <param name="hiddenLayerSizes">Number of neurons for each hidden layer</param>
 		/// <param name="activationFunction">Activation function for every hidden node</param>
+		/// <param name="regularizationFunction">Regularization function</param>
+		/// <param name="neuronFactory">Neuron factory used to create neurons</param>
+		/// <param name="synapseFactory">Synapse factory used to create synapses</param>
 		/// <returns>New network</returns>
-		public static Network CreateMultilayerPerceptron(int[] layerSizes, IActivationFunction activationFunction)
+		public static Network CreateMultilayerPerceptron(int inputSize, int[] hiddenLayerSizes,
+			IActivationFunction activationFunction,
+			IRegularizationFunction regularizationFunction,
+			NeuronFactory neuronFactory,
+			SynapseFactory synapseFactory)
 		{
-		/*
-			var network = new Network();
-			network.Inputs = new Neuron[layerSizes[0]];
-			network.Outputs = new Neuron[layerSizes[layerSizes.Length - 1]];
+			var prevLayer = new Neuron[inputSize];
 
-			Neuron[] prevLayer = null;
+			// create input layer
+			var inputNeurons = new Neuron[inputSize];
+			for (var i = 0; i < inputSize; i++) {
+				var n = neuronFactory.CreateNeuron(activationFunction);
+				inputNeurons[i] = n;
+				prevLayer[i] = n;
+			}
 
-			for (var i = 0; i < layerSizes.Length; i++) {
-				Neuron[] layer;
-				if (i == 0) {
-					layer = network.Inputs;
-				} else if (i == layerSizes.Length - 1) {
-					layer = network.Outputs;
-				} else {
-					layer = new Neuron[layerSizes[i]];
-				}
+			// create hidden layers
+			for (var i = 0; i < hiddenLayerSizes.Length; i++) {
+				var layer = new Neuron[hiddenLayerSizes[i]];
 
 				for (var j = 0; j < layer.Length; j++) {
-					var n = new Neuron(i == layerSizes.Length - 1 ? ActivationFunction.Linear : activationFunction);
+					var n = neuronFactory.CreateNeuron(activationFunction);
 					layer[j] = n;
 
-					if (prevLayer != null) {
-						for (var k = 0; k < layerSizes[i - 1]; k++) {
-							var prevNeuron = prevLayer[k];
-							var s = new Synapse(prevNeuron, n);
-							s.Weight = Util.RandomDouble() - 0.5;
-							prevNeuron.Outputs.Add(s);
-							n.Inputs.Add(s);
-						}
+					for (var k = 0; k < prevLayer.Length; k++) {
+						var pn = prevLayer[k];
+						synapseFactory.Link(pn, n, regularizationFunction);
 					}
 				}
 
 				prevLayer = layer;
 			}
 
-			return network;*/
-			return null;
+			// create output neuron
+			var outputNeuron = neuronFactory.CreateOutputNeuron();
+			for (var i = 0; i < prevLayer.Length; i++) {
+				var pn = prevLayer[i];
+				synapseFactory.Link(pn, outputNeuron, regularizationFunction);
+			}
+
+			return new Network {
+				InputNeurons = inputNeurons,
+				OutputNeuron = outputNeuron
+			};
 		}
 	}
 }

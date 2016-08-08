@@ -8,7 +8,21 @@
 
 	public static class ErrorFunction
 	{
+		public static IErrorFunction Linear = new LinearErrorFunction();
 		public static IErrorFunction Square = new SquareErrorFunction();
+	}
+
+	internal class LinearErrorFunction : IErrorFunction
+	{
+		public double Error(double prediction, double actual)
+		{
+			return actual - prediction;
+		}
+
+		public double Derivative(double prediction, double actual)
+		{
+			return 1.0;
+		}
 	}
 
 	internal class SquareErrorFunction : IErrorFunction

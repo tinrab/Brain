@@ -41,13 +41,15 @@
     <Compile Include="NeuralNetwork\ActivationFunction.cs" />
     <Compile Include="NeuralNetwork\NetworkFactory.cs" />
     <Compile Include="NeuralNetwork\NeuronFactory.cs" />
+    <Compile Include="NeuralNetwork\ParameterGenerator.cs" />
+    <Compile Include="NeuralNetwork\RegularizationFunction.cs" />
     <Compile Include="NeuralNetwork\Synapse.cs" />
     <Compile Include="NeuralNetwork\ErrorFunction.cs" />
     <Compile Include="NeuralNetwork\Network.cs" />
     <Compile Include="NeuralNetwork\Neuron.cs" />
     <Compile Include="NeuralNetwork\SynapseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegressionError.cs" />
+    <Compile Include="Math\RegressionError.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

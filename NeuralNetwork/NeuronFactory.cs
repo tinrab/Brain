@@ -1,31 +1,36 @@
 ﻿namespace Brain.NeuralNetwork
 {
-	public static class NeuronFactory
+	public class NeuronFactory
 	{
-		public static Neuron CreateInputNeuron(int index)
+		private readonly IParameterGenerator _parameterGenerator;
+		private int _neuronIdCounter;
+
+		public NeuronFactory()
 		{
-			return new InputNeuron(index);
+			_parameterGenerator = new BasicParameterGenerator();
 		}
 
-		public static Neuron CreateHiddenNeuron(IActivationFunction activation)
+		public NeuronFactory(IParameterGenerator parameterGenerator)
 		{
-			var n = new Neuron {
-				Output = double.NaN,
-				Error = double.NaN,
-				Activation = activation
+			_parameterGenerator = parameterGenerator;
+		}
+
+		public Neuron CreateNeuron(IActivationFunction activation)
+		{
+			return new Neuron {
+				Id = _neuronIdCounter++,
+				Activation = activation,
+				Bias = _parameterGenerator.GenerateNeuronBias()
 			};
-			SynapseFactory.Link(CreateBiasNeuron(), n);
-			return n;
 		}
 
-		public static Neuron CreateOutputNeuron(IActivationFunction activation)
+		public Neuron CreateOutputNeuron()
 		{
-			return CreateHiddenNeuron(activation);
-		}
-
-		public static Neuron CreateBiasNeuron()
-		{
-			return new BiasNeuron();
+			return new Neuron {
+				Id = _neuronIdCounter++,
+				Activation = ActivationFunction.Linear,
+				Bias = _parameterGenerator.GenerateNeuronBias()
+			};
 		}
 	}
 }

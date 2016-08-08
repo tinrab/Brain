@@ -45,7 +45,7 @@
 	{
 		public double Compute(double x)
 		{
-			return 1.0 / (1 + System.Math.Exp(-x));
+			return 1.0 / (1.0 + System.Math.Exp(-x));
 		}
 
 		public double Derivative(double x)
@@ -64,7 +64,7 @@
 
 		public double Derivative(double x)
 		{
-			return 1;
+			return 1.0;
 		}
 	}
 }

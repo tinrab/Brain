@@ -1,13 +1,26 @@
 ﻿namespace Brain.NeuralNetwork
 {
-	public static class SynapseFactory
+	public class SynapseFactory
 	{
-		public static Synapse Link(Neuron source, Neuron destination)
+		private readonly IParameterGenerator _parameterGenerator;
+
+		public SynapseFactory()
+		{
+			_parameterGenerator = new BasicParameterGenerator();
+		}
+
+		public SynapseFactory(IParameterGenerator parameterGenerator)
+		{
+			_parameterGenerator = parameterGenerator;
+		}
+
+		public Synapse Link(Neuron source, Neuron destination, IRegularizationFunction regularization = null)
 		{
 			var s = new Synapse {
 				Source = source,
 				Destination = destination,
-				Weight = Util.RandomDouble()
+				Regularization = regularization,
+				Weight = _parameterGenerator.GenerateSynapseWeight()
 			};
 
 			source.Outputs.Add(s);
