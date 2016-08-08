@@ -10,7 +10,7 @@ namespace Brain.Math
 		/// <param name="real">Real values</param>
 		/// <param name="predicted">Predictions</param>
 		/// <returns></returns>
-		public static double MAE(Vector real, Vector predicted)
+		public static double Mae(Vector real, Vector predicted)
 		{
 			var sum = 0.0;
 
@@ -27,7 +27,7 @@ namespace Brain.Math
 		/// <param name="real"></param>
 		/// <param name="predicted"></param>
 		/// <returns></returns>
-		public static double RMAE(Vector real, Vector predicted)
+		public static double Rmae(Vector real, Vector predicted)
 		{
 			var realMean = real.Mean();
 			var sum = 0.0;
@@ -36,7 +36,7 @@ namespace Brain.Math
 				sum += System.Math.Abs(real[i] - realMean);
 			}
 
-			return real.Length * MAE(real, predicted) / sum;
+			return real.Length * Mae(real, predicted) / sum;
 		}
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Brain.Math
 		/// <param name="real"></param>
 		/// <param name="predicted"></param>
 		/// <returns></returns>
-		public static double MSE(Vector real, Vector predicted)
+		public static double Mse(Vector real, Vector predicted)
 		{
 			var sum = 0.0;
 
@@ -62,7 +62,7 @@ namespace Brain.Math
 		/// <param name="real"></param>
 		/// <param name="predicted"></param>
 		/// <returns></returns>
-		public static double RMSE(Vector real, Vector predicted)
+		public static double Rmse(Vector real, Vector predicted)
 		{
 			var realMean = real.Mean();
 			var sum = 0.0;
@@ -71,7 +71,7 @@ namespace Brain.Math
 				sum += System.Math.Pow(real[i] - realMean, 2.0);
 			}
 
-			return real.Length * MSE(real, predicted) / sum;
+			return real.Length * Mse(real, predicted) / sum;
 		}
 	}
 }

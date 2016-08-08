@@ -21,6 +21,17 @@ namespace Brain.NeuralNetwork
 			}
 		}
 
+		public Vector Compute(Matrix inputs)
+		{
+			var predictions = new Vector(inputs.Rows);
+
+			for (var i = 0; i < inputs.Rows; i++) {
+				predictions[i] = Compute(inputs.GetRow(i));
+			}
+
+			return predictions;
+		}
+
 		public double Compute(Vector input)
 		{
 			if (input.Length != InputNeurons.Length) {
@@ -150,7 +161,7 @@ namespace Brain.NeuralNetwork
 						var inSynapse = n.Inputs[j];
 						if (inSynapse.DerivativeCount > 0) {
 							var rd = inSynapse.Regularization == null ? 0.0 : inSynapse.Regularization.Derivative(inSynapse.Weight);
-							inSynapse.Weight -= (learningRate / inSynapse.DerivativeCount) *
+							inSynapse.Weight -= learningRate / inSynapse.DerivativeCount *
 														(inSynapse.ErrorDerivativeSum + regularizationRate * rd);
 							inSynapse.ErrorDerivativeSum = 0.0;
 							inSynapse.DerivativeCount = 0;
