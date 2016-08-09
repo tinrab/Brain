@@ -1,4 +1,4 @@
-﻿namespace Brain.NeuralNetwork
+﻿namespace Brain.Neuro
 {
 	public interface IErrorFunction
 	{

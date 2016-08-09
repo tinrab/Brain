@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Brain.Math;
-using Brain.NeuralNetwork;
+using Brain.Neuro;
 
 namespace Tests
 {

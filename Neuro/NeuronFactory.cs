@@ -1,4 +1,4 @@
-﻿namespace Brain.NeuralNetwork
+﻿namespace Brain.Neuro
 {
 	public class NeuronFactory
 	{
@@ -24,11 +24,11 @@
 			};
 		}
 
-		public Neuron CreateOutputNeuron()
+		public Neuron CreateOutputNeuron(IActivationFunction activation)
 		{
 			return new Neuron {
 				Id = _neuronIdCounter++,
-				Activation = ActivationFunction.Linear,
+				Activation = activation,
 				Bias = _parameterGenerator.GenerateNeuronBias()
 			};
 		}

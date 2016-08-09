@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Brain.NeuralNetwork
+namespace Brain.Neuro
 {
 	public class Neuron : IComparable<Neuron>
 	{

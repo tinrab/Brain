@@ -1,6 +1,6 @@
 ﻿using System;
 using Brain.Math;
-using Brain.NeuralNetwork;
+using Brain.Neuro;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -11,10 +11,10 @@ namespace Tests
 		[TestMethod]
 		public void TestForward()
 		{
-			var parameterGenerator = new TestParameterGenerator();
+			var parameterGenerator = new ActionParameterGenerator(() => 0.1, () => 1.0);
 			var neuronFactor = new NeuronFactory(parameterGenerator);
 			var synapseFactory = new SynapseFactory(parameterGenerator);
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid, null, neuronFactor,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid, ActivationFunction.Linear, null, neuronFactor,
 				synapseFactory);
 			var x = new Vector(3, 5);
 
@@ -24,10 +24,10 @@ namespace Tests
 		[TestMethod]
 		public void TestBack()
 		{
-			var parameterGenerator = new TestParameterGenerator();
+			var parameterGenerator = new ActionParameterGenerator(() => 0.1, () => 1.0);
 			var neuronFactor = new NeuronFactory(parameterGenerator);
 			var synapseFactory = new SynapseFactory(parameterGenerator);
-			var network = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1, 1}, ActivationFunction.Sigmoid, null,
+			var network = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1, 1}, ActivationFunction.Sigmoid, ActivationFunction.Linear, null,
 				neuronFactor,
 				synapseFactory);
 			var networkTrainer = new NetworkTrainer(network);
@@ -52,7 +52,7 @@ namespace Tests
 		{
 			var neuronFactor = new NeuronFactory();
 			var synapseFactory = new SynapseFactory();
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid, null, neuronFactor,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid, ActivationFunction.Linear, null, neuronFactor,
 				synapseFactory);
 			var trainer = new NetworkTrainer(n, 0.7, 0.1);
 
@@ -107,7 +107,7 @@ namespace Tests
 			var neuronFactor = new NeuronFactory(pg);
 			var synapseFactory = new SynapseFactory(pg);
 
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {4, 4, 3}, ActivationFunction.Sigmoid, null, neuronFactor,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {4, 4, 3}, ActivationFunction.Sigmoid, ActivationFunction.Sigmoid, null, neuronFactor,
 				synapseFactory);
 			var trainer = new NetworkTrainer(n, 0.2, 0.01);
 

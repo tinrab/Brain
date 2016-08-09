@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Brain.Math;
 
-namespace Brain.NeuralNetwork
+namespace Brain.Neuro
 {
 	public class NetworkTrainer
 	{

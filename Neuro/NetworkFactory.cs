@@ -1,4 +1,4 @@
-﻿namespace Brain.NeuralNetwork
+﻿namespace Brain.Neuro
 {
 	public static class NetworkFactory
 	{
@@ -7,12 +7,14 @@
 		/// </summary>
 		/// <param name="layerSizes">Number of neurons per layer</param>
 		/// <param name="activationFunction">Activation function for every hidden node</param>
+		/// <param name="outputActivationFunction">Activation function for last layer</param>
 		/// <param name="regularizationFunction">Regularization function</param>
 		/// <param name="neuronFactory">Neuron factory used to create neurons</param>
 		/// <param name="synapseFactory">Synapse factory used to create synapses</param>
 		/// <returns>New network</returns>
 		public static Network CreateMultilayerPerceptron(int[] layerSizes,
 			IActivationFunction activationFunction,
+			IActivationFunction outputActivationFunction,
 			IRegularizationFunction regularizationFunction,
 			NeuronFactory neuronFactory,
 			SynapseFactory synapseFactory)
@@ -48,7 +50,7 @@
 			var outputNeurons = new Neuron[layerSizes[layerSizes.Length - 1]];
 
 			for (int i = 0; i < outputNeurons.Length; i++) {
-				var outputNeuron = neuronFactory.CreateOutputNeuron();
+				var outputNeuron = neuronFactory.CreateOutputNeuron(outputActivationFunction);
 				outputNeurons[i] = outputNeuron;
 				for (var j = 0; j < prevLayer.Length; j++) {
 					var pn = prevLayer[j];
