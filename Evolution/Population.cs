@@ -4,12 +4,14 @@ namespace Brain.Evolution
 {
 	public class Population
 	{
-		public Population(IChromosome first)
+		public Population(IChromosome first, int minSize, int maxSize)
 		{
+			MinSize = minSize;
+			MaxSize = maxSize;
 			Chromosomes = new List<IChromosome>();
 			Chromosomes.Add(first.Clone());
 
-			for (var i = 0; i < MinSize; i++) {
+			while (Chromosomes.Count < MinSize) {
 				Chromosomes.Add(first.CreateNew());
 			}
 		}

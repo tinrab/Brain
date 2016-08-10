@@ -8,26 +8,28 @@ namespace Tests
 	[TestClass]
 	public class NetworkTest
 	{
-		[TestMethod]
+		[TestMethod, TestCategory("Neuro")]
 		public void TestForward()
 		{
 			var parameterGenerator = new ActionParameterGenerator(() => 0.1, () => 1.0);
 			var neuronFactor = new NeuronFactory(parameterGenerator);
 			var synapseFactory = new SynapseFactory(parameterGenerator);
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid, ActivationFunction.Linear, null, neuronFactor,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid,
+				ActivationFunction.Linear, null, neuronFactor,
 				synapseFactory);
 			var x = new Vector(3, 5);
 
 			Assert.IsTrue(Math.Abs(n.Compute(x)[0] - 2.0993931) < 0.001);
 		}
 
-		[TestMethod]
+		[TestMethod, TestCategory("Neuro")]
 		public void TestBack()
 		{
 			var parameterGenerator = new ActionParameterGenerator(() => 0.1, () => 1.0);
 			var neuronFactor = new NeuronFactory(parameterGenerator);
 			var synapseFactory = new SynapseFactory(parameterGenerator);
-			var network = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1, 1}, ActivationFunction.Sigmoid, ActivationFunction.Linear, null,
+			var network = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1, 1}, ActivationFunction.Sigmoid,
+				ActivationFunction.Linear, null,
 				neuronFactor,
 				synapseFactory);
 			var networkTrainer = new NetworkTrainer(network);
@@ -47,12 +49,13 @@ namespace Tests
 			Assert.AreEqual(1, n.InputDerivativeCount);
 		}
 
-		[TestMethod]
+		[TestMethod, TestCategory("Neuro")]
 		public void TestTrainXor()
 		{
 			var neuronFactor = new NeuronFactory();
 			var synapseFactory = new SynapseFactory();
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid, ActivationFunction.Linear, null, neuronFactor,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid,
+				ActivationFunction.Linear, null, neuronFactor,
 				synapseFactory);
 			var trainer = new NetworkTrainer(n, 0.7, 0.1);
 
@@ -64,7 +67,7 @@ namespace Tests
 			});
 			var labels = new Vector(0, 1, 1, 0);
 
-			trainer.Train(examples, labels, 1000);
+			trainer.Train(examples, labels, 2000);
 
 			for (var i = 0; i < labels.Length; i++) {
 				var x = examples.GetRow(i);
@@ -74,7 +77,7 @@ namespace Tests
 			}
 		}
 
-		[TestMethod]
+		[TestMethod, TestCategory("Neuro")]
 		public void TestIris()
 		{
 			var examples = Util.LoadIrisDataSet();
@@ -107,7 +110,8 @@ namespace Tests
 			var neuronFactor = new NeuronFactory(pg);
 			var synapseFactory = new SynapseFactory(pg);
 
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {4, 4, 3}, ActivationFunction.Sigmoid, ActivationFunction.Sigmoid, null, neuronFactor,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {4, 4, 3}, ActivationFunction.Sigmoid,
+				ActivationFunction.Sigmoid, null, neuronFactor,
 				synapseFactory);
 			var trainer = new NetworkTrainer(n, 0.2, 0.01);
 

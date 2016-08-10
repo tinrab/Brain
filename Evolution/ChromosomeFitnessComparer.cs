@@ -6,7 +6,7 @@ namespace Brain.Evolution
 	{
 		public int Compare(IChromosome x, IChromosome y)
 		{
-			return x.Fitness.CompareTo(y.Fitness);
+			return -x.Fitness.CompareTo(y.Fitness);
 		}
 	}
 }

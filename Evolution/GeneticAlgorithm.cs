@@ -1,12 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Brain.Evolution
 {
 	public class GeneticAlgorithm
 	{
-		public GeneticAlgorithm(Population population)
+		private const double DefaultCrossoverProbability = 0.8;
+		private const double DefaultMutationProbability = 0.8;
+
+		public GeneticAlgorithm(Population population, ISelection selection, ICrossover crossover, IReinsertion reinsertion)
 		{
 			Population = population;
+			Selection = selection;
+			Crossover = crossover;
+			Reinsertion = reinsertion;
+			CrossoverProbability = DefaultCrossoverProbability;
+			MutationProbability = DefaultMutationProbability;
 		}
 
 		public IChromosome BestChromosome { get; set; }
@@ -22,9 +31,14 @@ namespace Brain.Evolution
 			var selected = Select();
 			var offspring = Cross(selected);
 			Mutate(offspring);
-			var nextGeneration = Reinsertion.Select(Population, selected, offspring);
 
-			BestChromosome = Population.FindBest();
+			var nextGeneration = Reinsertion.Select(Population, selected, offspring);
+			var best = Population.FindBest();
+
+			if (BestChromosome == null || best.Fitness > BestChromosome.Fitness) {
+				BestChromosome = best;
+			}
+
 			Population.Reset(nextGeneration);
 		}
 
