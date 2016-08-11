@@ -8,11 +8,7 @@ namespace Tests.Evolution
 		public const double Target = 42.0;
 
 		public double Value { get; set; }
-
-		public double Fitness
-		{
-			get { return -Math.Abs(Target - Value); }
-		}
+		public double Fitness { get; set; }
 
 		public IChromosome CreateNew()
 		{
@@ -31,6 +27,11 @@ namespace Tests.Evolution
 		public void Mutate()
 		{
 			Value += Brain.Util.RandomDouble() * 2.0 - 1.0;
+		}
+
+		public void Evaluate()
+		{
+			Fitness = -Math.Abs(Target - Value);
 		}
 	}
 }

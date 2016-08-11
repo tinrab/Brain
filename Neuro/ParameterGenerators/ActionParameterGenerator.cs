@@ -1,11 +1,5 @@
-﻿namespace Brain.Neuro
+﻿namespace Brain.Neuro.ParameterGenerators
 {
-	public interface IParameterGenerator
-	{
-		double GenerateSynapseWeight();
-		double GenerateNeuronBias();
-	}
-
 	public class ActionParameterGenerator : IParameterGenerator
 	{
 		public delegate T Func<T>();
@@ -27,32 +21,6 @@
 		public double GenerateNeuronBias()
 		{
 			return _generateNeuronBias();
-		}
-	}
-
-	public class BasicParameterGenerator : IParameterGenerator
-	{
-		public double GenerateSynapseWeight()
-		{
-			return Util.RandomDouble() - 0.5;
-		}
-
-		public double GenerateNeuronBias()
-		{
-			return 0.1;
-		}
-	}
-
-	public class PositiveUniformParameterGenerator : IParameterGenerator
-	{
-		public double GenerateSynapseWeight()
-		{
-			return Util.RandomDouble();
-		}
-
-		public double GenerateNeuronBias()
-		{
-			return 0.1;
 		}
 	}
 }

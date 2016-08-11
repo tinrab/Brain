@@ -1,6 +1,7 @@
 ﻿using System;
 using Brain.Math;
 using Brain.Neuro;
+using Brain.Neuro.ParameterGenerators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -15,7 +16,7 @@ namespace Tests
 			var neuronFactor = new NeuronFactory(parameterGenerator);
 			var synapseFactory = new SynapseFactory(parameterGenerator);
 			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid,
-				ActivationFunction.Linear, null, neuronFactor,
+				ActivationFunction.Identity, null, neuronFactor,
 				synapseFactory);
 			var x = new Vector(3, 5);
 
@@ -29,7 +30,7 @@ namespace Tests
 			var neuronFactor = new NeuronFactory(parameterGenerator);
 			var synapseFactory = new SynapseFactory(parameterGenerator);
 			var network = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1, 1}, ActivationFunction.Sigmoid,
-				ActivationFunction.Linear, null,
+				ActivationFunction.Identity, null,
 				neuronFactor,
 				synapseFactory);
 			var networkTrainer = new NetworkTrainer(network);
@@ -52,12 +53,13 @@ namespace Tests
 		[TestMethod, TestCategory("Neuro")]
 		public void TestTrainXor()
 		{
-			var neuronFactor = new NeuronFactory();
-			var synapseFactory = new SynapseFactory();
+			var pg = new PositiveUniformParameterGenerator();
+			var neuronFactor = new NeuronFactory(pg);
+			var synapseFactory = new SynapseFactory(pg);
 			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {2, 2, 1}, ActivationFunction.Sigmoid,
-				ActivationFunction.Linear, null, neuronFactor,
+				ActivationFunction.Identity, null, neuronFactor,
 				synapseFactory);
-			var trainer = new NetworkTrainer(n, 0.7, 0.1);
+			var trainer = new NetworkTrainer(n, 0.9, 0.1);
 
 			var examples = new Matrix(new double[,] {
 				{0, 0},
@@ -67,7 +69,7 @@ namespace Tests
 			});
 			var labels = new Vector(0, 1, 1, 0);
 
-			trainer.Train(examples, labels, 2000);
+			trainer.Train(examples, labels, 1000);
 
 			for (var i = 0; i < labels.Length; i++) {
 				var x = examples.GetRow(i);
@@ -113,9 +115,9 @@ namespace Tests
 			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {4, 4, 3}, ActivationFunction.Sigmoid,
 				ActivationFunction.Sigmoid, null, neuronFactor,
 				synapseFactory);
-			var trainer = new NetworkTrainer(n, 0.2, 0.01);
+			var trainer = new NetworkTrainer(n, 0.3, 0.01);
 
-			trainer.Train(trainData, trainLabels, 500);
+			trainer.Train(trainData, trainLabels, 1000);
 
 			var predictions = n.Classify(testData);
 			var ca = StatisticsUtil.ClassificationAccuracy(testLabels, predictions);

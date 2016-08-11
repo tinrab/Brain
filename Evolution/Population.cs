@@ -9,8 +9,8 @@ namespace Brain.Evolution
 			MinSize = minSize;
 			MaxSize = maxSize;
 			Chromosomes = new List<IChromosome>();
-			Chromosomes.Add(first.Clone());
 
+			Chromosomes.Add(first.Clone());
 			while (Chromosomes.Count < MinSize) {
 				Chromosomes.Add(first.CreateNew());
 			}

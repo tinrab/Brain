@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Brain.Evolution.Reinsertion
+namespace Brain.Evolution.Reinsertions
 {
 	public class PureReinsertion : IReinsertion
 	{

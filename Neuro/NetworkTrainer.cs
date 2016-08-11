@@ -33,7 +33,7 @@ namespace Brain.Neuro
 		{
 			var labelMatrix = new Matrix(labels.Length, 1);
 
-			for (int i = 0; i < labels.Length; i++) {
+			for (var i = 0; i < labels.Length; i++) {
 				labelMatrix[i, 0] = labels[i];
 			}
 

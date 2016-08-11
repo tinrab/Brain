@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Brain.Evolution.Selection
+namespace Brain.Evolution.Selections
 {
 	public class EliteSelection : ISelection
 	{

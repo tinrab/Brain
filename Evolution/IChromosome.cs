@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Brain.Evolution
+﻿namespace Brain.Evolution
 {
 	public interface IChromosome
 	{
-		double Fitness { get; }
+		double Fitness { get; set; }
 		IChromosome CreateNew();
 		IChromosome Clone();
 		void Mutate();

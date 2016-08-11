@@ -1,7 +1,7 @@
 ﻿using System;
 using Brain.Evolution;
-using Brain.Evolution.Reinsertion;
-using Brain.Evolution.Selection;
+using Brain.Evolution.Reinsertions;
+using Brain.Evolution.Selections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Evolution
@@ -15,7 +15,11 @@ namespace Tests.Evolution
 			var p = new Population(new TargetNumberChromosome(), 10, 50);
 			var ga = new GeneticAlgorithm(p, new EliteSelection(), new TargetNumberCrossover(), new ElitistReinsertion());
 
-			for (int i = 0; i < 100; i++) {
+			for (var i = 0; i < 100; i++) {
+				for (var j = 0; j < p.Size; j++) {
+					((TargetNumberChromosome) p[j]).Evaluate();
+				}
+
 				ga.Evolve();
 			}
 

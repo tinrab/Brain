@@ -1,4 +1,6 @@
-﻿namespace Brain.Neuro
+﻿using Brain.Neuro.ParameterGenerators;
+
+namespace Brain.Neuro
 {
 	public class SynapseFactory
 	{
