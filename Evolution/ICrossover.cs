@@ -5,6 +5,6 @@ namespace Brain.Evolution
 	public interface ICrossover
 	{
 		int RequiredParents { get; }
-		List<IChromosome> Cross(List<IChromosome> parents);
+		List<Chromosome> Cross(List<Chromosome> parents);
 	}
 }

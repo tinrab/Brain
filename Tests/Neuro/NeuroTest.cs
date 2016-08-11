@@ -20,7 +20,7 @@ namespace Tests
 				synapseFactory);
 			var x = new Vector(3, 5);
 
-			Assert.IsTrue(Math.Abs(n.Compute(x)[0] - 2.0993931) < 0.001);
+			Assert.IsTrue(System.Math.Abs(n.Compute(x)[0] - 2.0993931) < 0.001);
 		}
 
 		[TestMethod, TestCategory("Neuro")]
@@ -45,8 +45,8 @@ namespace Tests
 			Console.WriteLine(n.OutputDerivative);
 			Console.WriteLine(n.InputDerivativeCount);
 
-			Assert.IsTrue(Math.Abs(-3.987764 - n.InputDerivative) < 0.01);
-			Assert.IsTrue(Math.Abs(-41.009155 - n.OutputDerivative) < 0.01);
+			Assert.IsTrue(System.Math.Abs(-3.987764 - n.InputDerivative) < 0.01);
+			Assert.IsTrue(System.Math.Abs(-41.009155 - n.OutputDerivative) < 0.01);
 			Assert.AreEqual(1, n.InputDerivativeCount);
 		}
 
@@ -75,7 +75,7 @@ namespace Tests
 				var x = examples.GetRow(i);
 				var y = labels[i];
 				Console.WriteLine("Actual: {0}, Result: {1}", y, n.Compute(x));
-				Assert.IsTrue(Math.Abs(y - n.Compute(x)[0]) < 0.01);
+				Assert.IsTrue(System.Math.Abs(y - n.Compute(x)[0]) < 0.01);
 			}
 		}
 

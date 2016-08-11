@@ -55,6 +55,8 @@
     <Compile Include="Evolution\EvolutionTest.cs" />
     <Compile Include="Evolution\TargetNumberChromosome.cs" />
     <Compile Include="Evolution\TargetNumberCrossover.cs" />
+    <Compile Include="Evolution\BooleanChromosome.cs" />
+    <Compile Include="Evolution\BooleanChromosomeCrossover.cs" />
     <Compile Include="Neuro\NeuroTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />

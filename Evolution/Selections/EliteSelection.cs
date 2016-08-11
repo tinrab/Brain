@@ -4,9 +4,9 @@ namespace Brain.Evolution.Selections
 {
 	public class EliteSelection : ISelection
 	{
-		public List<IChromosome> Select(List<IChromosome> chromosomes, int count)
+		public List<Chromosome> Select(List<Chromosome> chromosomes, int count)
 		{
-			chromosomes.Sort(new ChromosomeFitnessComparer());
+			chromosomes.Sort();
 
 			return chromosomes.GetRange(0, count);
 		}

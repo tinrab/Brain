@@ -4,11 +4,11 @@ namespace Brain.Evolution
 {
 	public class Population
 	{
-		public Population(IChromosome first, int minSize, int maxSize)
+		public Population(Chromosome first, int minSize, int maxSize)
 		{
 			MinSize = minSize;
 			MaxSize = maxSize;
-			Chromosomes = new List<IChromosome>();
+			Chromosomes = new List<Chromosome>();
 
 			Chromosomes.Add(first.Clone());
 			while (Chromosomes.Count < MinSize) {
@@ -21,22 +21,22 @@ namespace Brain.Evolution
 			get { return Chromosomes.Count; }
 		}
 
-		public IChromosome this[int index]
+		public Chromosome this[int index]
 		{
 			get { return Chromosomes[index]; }
 			set { Chromosomes[index] = value; }
 		}
 
-		public List<IChromosome> Chromosomes { get; set; }
+		public List<Chromosome> Chromosomes { get; set; }
 		public int MaxSize { get; set; }
 		public int MinSize { get; set; }
 
-		public void Reset(List<IChromosome> chromosomes)
+		public void Reset(List<Chromosome> chromosomes)
 		{
 			Chromosomes = chromosomes;
 		}
 
-		public IChromosome FindBest()
+		public Chromosome FindBest()
 		{
 			var best = Chromosomes[0];
 

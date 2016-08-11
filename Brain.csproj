@@ -40,12 +40,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Evolution\ChromosomeFitnessComparer.cs" />
-    <Compile Include="Evolution\CrossoverUtil.cs" />
+    <Compile Include="Evolution\Crossover.cs" />
     <Compile Include="Evolution\GeneticAlgorithm.cs" />
-    <Compile Include="Evolution\IChromosome.cs" />
+    <Compile Include="Evolution\Chromosome.cs" />
     <Compile Include="Evolution\ICrossover.cs" />
-    <Compile Include="Evolution\IGene.cs" />
+    <Compile Include="Evolution\Gene.cs" />
     <Compile Include="Evolution\IReinsertion.cs" />
     <Compile Include="Evolution\ISelection.cs" />
     <Compile Include="Evolution\Population.cs" />

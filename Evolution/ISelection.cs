@@ -4,6 +4,6 @@ namespace Brain.Evolution
 {
 	public interface ISelection
 	{
-		List<IChromosome> Select(List<IChromosome> chromosomes, int count);
+		List<Chromosome> Select(List<Chromosome> chromosomes, int count);
 	}
 }

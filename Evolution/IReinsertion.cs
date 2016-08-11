@@ -4,6 +4,6 @@ namespace Brain.Evolution
 {
 	public interface IReinsertion
 	{
-		List<IChromosome> Select(Population population, List<IChromosome> parents, List<IChromosome> offspring);
+		List<Chromosome> Select(Population population, List<Chromosome> parents, List<Chromosome> offspring);
 	}
 }

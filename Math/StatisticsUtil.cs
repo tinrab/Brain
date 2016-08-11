@@ -34,7 +34,7 @@ namespace Brain.Math
 
 		public static double Rmae(Vector actual, Vector predicted)
 		{
-			var actualMean = actual.Mean();
+			var actualMean = actual.Mean;
 			var sum = 0.0;
 
 			for (var i = 0; i < actual.Length; i++) {
@@ -57,7 +57,7 @@ namespace Brain.Math
 
 		public static double Rmse(Vector actual, Vector predicted)
 		{
-			var actualMean = actual.Mean();
+			var actualMean = actual.Mean;
 			var sum = 0.0;
 
 			for (var i = 0; i < actual.Length; i++) {

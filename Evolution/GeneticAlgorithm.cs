@@ -18,7 +18,7 @@ namespace Brain.Evolution
 			MutationProbability = DefaultMutationProbability;
 		}
 
-		public IChromosome BestChromosome { get; set; }
+		public Chromosome BestChromosome { get; set; }
 		public Population Population { get; set; }
 		public ISelection Selection { get; set; }
 		public ICrossover Crossover { get; set; }
@@ -26,13 +26,19 @@ namespace Brain.Evolution
 		public double CrossoverProbability { get; set; }
 		public double MutationProbability { get; set; }
 
-		public void Evolve()
-		{
-			var selected = Select();
-			var offspring = Cross(selected);
-			Mutate(offspring);
+		private List<Chromosome> _selected;
+		private List<Chromosome> _offspring;
 
-			var nextGeneration = Reinsertion.Select(Population, selected, offspring);
+		public void BeginGeneration()
+		{
+			_selected = Select();
+			_offspring = Cross(_selected);
+			Mutate(_offspring);
+		}
+
+		public void EndGeneration()
+		{
+			var nextGeneration = Reinsertion.Select(Population, _selected, _offspring);
 			var best = Population.FindBest();
 
 			if (BestChromosome == null || best.Fitness > BestChromosome.Fitness) {
@@ -42,11 +48,11 @@ namespace Brain.Evolution
 			Population.Reset(nextGeneration);
 		}
 
-		private List<IChromosome> Cross(List<IChromosome> parents)
+		private List<Chromosome> Cross(List<Chromosome> parents)
 		{
-			var offspring = new List<IChromosome>();
+			var offspring = new List<Chromosome>();
 
-			for (var i = 0; i < Population.MinSize; i += Crossover.RequiredParents) {
+			for (var i = 0; i < parents.Count - Crossover.RequiredParents; i += Crossover.RequiredParents) {
 				var selected = parents.GetRange(i, Crossover.RequiredParents);
 				if (selected.Count == Crossover.RequiredParents && Util.RandomDouble() <= CrossoverProbability) {
 					offspring.AddRange(Crossover.Cross(selected));
@@ -56,7 +62,7 @@ namespace Brain.Evolution
 			return offspring;
 		}
 
-		private void Mutate(List<IChromosome> chromosomes)
+		private void Mutate(List<Chromosome> chromosomes)
 		{
 			for (var i = 0; i < chromosomes.Count; i++) {
 				if (Util.RandomDouble() <= MutationProbability) {
@@ -65,7 +71,7 @@ namespace Brain.Evolution
 			}
 		}
 
-		private List<IChromosome> Select()
+		private List<Chromosome> Select()
 		{
 			return Selection.Select(Population.Chromosomes, Population.MinSize);
 		}

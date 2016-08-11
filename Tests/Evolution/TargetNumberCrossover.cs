@@ -10,15 +10,15 @@ namespace Tests.Evolution
 			get { return 2; }
 		}
 
-		public List<IChromosome> Cross(List<IChromosome> parents)
+		public List<Chromosome> Cross(List<Chromosome> parents)
 		{
 			var a = (TargetNumberChromosome) parents[0];
 			var b = (TargetNumberChromosome) parents[1];
-			var offspring = new List<IChromosome>();
-
-			offspring.Add(new TargetNumberChromosome {
-				Value = (a.Value + b.Value) / 2.0
-			});
+			var offspring = new List<Chromosome> {
+				new TargetNumberChromosome {
+					Value = (a.Value + b.Value) / 2.0
+				}
+			};
 
 			return offspring;
 		}
