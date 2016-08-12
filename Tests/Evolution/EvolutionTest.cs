@@ -28,7 +28,7 @@ namespace Tests.Evolution
 				ga.EndGeneration();
 			}
 
-			var result = (TargetNumberChromosome) ga.BestChromosome;
+			var result = (TargetNumberChromosome) ga.FittestChromosome;
 			Assert.IsTrue(Math.Abs(result.Value - 42.0) < 0.01);
 		}
 
@@ -54,7 +54,7 @@ namespace Tests.Evolution
 				ga.EndGeneration();
 			}
 
-			var result = (BooleanChromosome) ga.BestChromosome;
+			var result = (BooleanChromosome) ga.FittestChromosome;
 			CollectionAssert.AreEqual(t, result.Value);
 		}
 	}

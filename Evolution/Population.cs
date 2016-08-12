@@ -36,7 +36,7 @@ namespace Brain.Evolution
 			Chromosomes = chromosomes;
 		}
 
-		public Chromosome FindBest()
+		public Chromosome FindFittest()
 		{
 			var best = Chromosomes[0];
 

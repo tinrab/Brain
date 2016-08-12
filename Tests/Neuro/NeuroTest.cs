@@ -112,7 +112,7 @@ namespace Tests
 			var neuronFactor = new NeuronFactory(pg);
 			var synapseFactory = new SynapseFactory(pg);
 
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] {4, 4, 3}, ActivationFunction.Sigmoid,
+			var n = NetworkFactory.CreateMultilayerPerceptron(new[] { 4, 4, 3 }, ActivationFunction.Sigmoid,
 				ActivationFunction.Sigmoid, null, neuronFactor,
 				synapseFactory);
 			var trainer = new NetworkTrainer(n, 0.3, 0.01);

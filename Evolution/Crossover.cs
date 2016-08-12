@@ -53,5 +53,6 @@ namespace Brain.Evolution
 
 			return offspring;
 		}
+
 	}
 }

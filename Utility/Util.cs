@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Brain
 {
@@ -14,6 +15,24 @@ namespace Brain
 		public static int RandomInt(int minValue, int maxValue)
 		{
 			return random.Next(minValue, maxValue);
+		}
+
+		public static int[] RandomUniqueInts(int count, int minValue, int maxValue)
+		{
+			var a = new int[count];
+			var list = new List<int>();
+
+			for (int i = minValue; i < maxValue; i++) {
+				list.Add(i);
+			}
+
+			for (int i = 0; i < count; i++) {
+				var idx = RandomInt(list.Count);
+				a[i] = list[idx];
+				list.RemoveAt(idx);
+			}
+
+			return a;
 		}
 
 		public static double RandomDouble()

@@ -18,7 +18,7 @@ namespace Brain.Evolution
 			MutationProbability = DefaultMutationProbability;
 		}
 
-		public Chromosome BestChromosome { get; set; }
+		public Chromosome FittestChromosome { get; set; }
 		public Population Population { get; set; }
 		public ISelection Selection { get; set; }
 		public ICrossover Crossover { get; set; }
@@ -39,10 +39,10 @@ namespace Brain.Evolution
 		public void EndGeneration()
 		{
 			var nextGeneration = Reinsertion.Select(Population, _selected, _offspring);
-			var best = Population.FindBest();
+			var best = Population.FindFittest();
 
-			if (BestChromosome == null || best.Fitness > BestChromosome.Fitness) {
-				BestChromosome = best;
+			if (FittestChromosome == null || best.Fitness > FittestChromosome.Fitness) {
+				FittestChromosome = best;
 			}
 
 			Population.Reset(nextGeneration);
