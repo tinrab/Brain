@@ -49,8 +49,17 @@
     <Compile Include="Evolution\ISelection.cs" />
     <Compile Include="Evolution\Population.cs" />
     <Compile Include="Evolution\Reinsertions\ElitistReinsertion.cs" />
+    <Compile Include="Evolution\Reinsertions\FitnessBasedReinsertion.cs" />
     <Compile Include="Evolution\Reinsertions\PureReinsertion.cs" />
+    <Compile Include="Evolution\Reinsertions\UniformReinsertion.cs" />
     <Compile Include="Evolution\Selections\EliteSelection.cs" />
+    <Compile Include="Evolution\Selections\ExponentialRankingSelection.cs" />
+    <Compile Include="Evolution\Selections\LinearRankingSelection.cs" />
+    <Compile Include="Evolution\Selections\ProportionalSelection.cs" />
+    <Compile Include="Evolution\Selections\SelectionUtil.cs" />
+    <Compile Include="Evolution\Selections\StochasticUniversalSamplingSelection.cs" />
+    <Compile Include="Evolution\Selections\TournamentSelection.cs" />
+    <Compile Include="Evolution\Selections\TruncationSelection.cs" />
     <Compile Include="Math\MathUtil.cs" />
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />

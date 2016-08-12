@@ -6,33 +6,29 @@ namespace Brain.Evolution.Selections
 	{
 		public List<Chromosome> Select(List<Chromosome> chromosomes, int count)
 		{
-			var selected = new List<Chromosome>();
-			var fitnessSum = 0.0;
-
-			for (var i = 0; i < chromosomes.Count; i++) {
-				fitnessSum += chromosomes[i].Fitness;
-			}
-
-			var wheel = new double[chromosomes.Count];
+			var fitnessSum = SelectionUtil.FitnessSum(chromosomes);
+			var p = new double[chromosomes.Count];
 			var s = 0.0;
 
 			for (var i = 0; i < chromosomes.Count; i++) {
 				s += chromosomes[i].Fitness / fitnessSum;
-				wheel[i] = s;
+				p[i] = s;
 			}
 
 			var stepSize = 1.0 / count;
-			var p = Util.RandomDouble();
+			var pointer = Util.RandomDouble();
+			var selected = new List<Chromosome>();
 
 			for (var i = 0; i < count; i++) {
-				var prob = p;
-				p += stepSize;
-				if (p > 1.0) {
-					p -= 1.0;
+				var r = pointer;
+				pointer += stepSize;
+
+				if (pointer > 1.0) {
+					pointer -= 1.0;
 				}
 
-				for (var j = 0; j < wheel.Length; j++) {
-					if (prob <= wheel[j]) {
+				for (var j = 0; j < p.Length; j++) {
+					if (r <= p[j]) {
 						selected.Add(chromosomes[j].Clone());
 						break;
 					}

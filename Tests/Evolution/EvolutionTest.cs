@@ -2,7 +2,6 @@
 using Brain.Evolution;
 using Brain.Evolution.Reinsertions;
 using Brain.Evolution.Selections;
-using Brain.Math;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Evolution
@@ -20,7 +19,7 @@ namespace Tests.Evolution
 				((TargetNumberChromosome) p[j]).Evaluate();
 			}
 
-			for (var i = 0; i < 150; i++) {
+			for (var i = 0; i < 500; i++) {
 				ga.BeginGeneration();
 				for (var j = 0; j < p.Size; j++) {
 					((TargetNumberChromosome) p[j]).Evaluate();
@@ -46,7 +45,7 @@ namespace Tests.Evolution
 				((BooleanChromosome) p[j]).Evaluate(t);
 			}
 
-			for (var i = 0; i < 500; i++) {
+			for (var i = 0; i < 1000; i++) {
 				ga.BeginGeneration();
 				for (var j = 0; j < p.Size; j++) {
 					((BooleanChromosome) p[j]).Evaluate(t);

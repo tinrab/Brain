@@ -22,11 +22,11 @@ namespace Brain
 			var a = new int[count];
 			var list = new List<int>();
 
-			for (int i = minValue; i < maxValue; i++) {
+			for (var i = minValue; i < maxValue; i++) {
 				list.Add(i);
 			}
 
-			for (int i = 0; i < count; i++) {
+			for (var i = 0; i < count; i++) {
 				var idx = RandomInt(list.Count);
 				a[i] = list[idx];
 				list.RemoveAt(idx);
@@ -58,6 +58,19 @@ namespace Brain
 			}
 
 			return a;
+		}
+
+		public static List<T> Flatten<T>(List<List<T>> list)
+		{
+			var flat = new List<T>();
+
+			for (var i = 0; i < list.Count; i++) {
+				for (var j = 0; j < list[i].Count; j++) {
+					flat.Add(list[i][j]);
+				}
+			}
+
+			return flat;
 		}
 	}
 }

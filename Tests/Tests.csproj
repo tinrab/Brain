@@ -52,7 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Evolution\EmptyChromosome.cs" />
     <Compile Include="Evolution\EvolutionTest.cs" />
+    <Compile Include="Evolution\Selections\SelectionTest.cs" />
     <Compile Include="Evolution\TargetNumberChromosome.cs" />
     <Compile Include="Evolution\TargetNumberCrossover.cs" />
     <Compile Include="Evolution\BooleanChromosome.cs" />

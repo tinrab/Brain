@@ -9,6 +9,8 @@ namespace Tests
 {
 	public static class Util
 	{
+		private static Random random = new Random();
+
 		public static void PrintNetwork(Network network)
 		{
 			var s = new SortedSet<Neuron>();
@@ -92,6 +94,19 @@ namespace Tests
 		public static void PrintArray<T>(T[] array)
 		{
 			Console.WriteLine("[{0}]", string.Join(",", array));
+		}
+
+		public static List<T> Shuffle<T>(List<T> list)
+		{
+			var n = list.Count;
+			while (n > 1) {
+				n--;
+				var k = random.Next(n + 1);
+				var row = list[k];
+				list[k] = list[n];
+				list[n] = row;
+			}
+			return list;
 		}
 	}
 }
