@@ -4,7 +4,8 @@
 	{
 		public double Error(double prediction, double actual)
 		{
-			return System.Math.Pow(prediction - actual, 2.0) * 0.5;
+			var d = prediction - actual;
+			return d * d * 0.5;
 		}
 
 		public double Derivative(double prediction, double actual)

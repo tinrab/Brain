@@ -78,51 +78,5 @@ namespace Tests
 				Assert.IsTrue(System.Math.Abs(y - n.Compute(x)[0]) < 0.01);
 			}
 		}
-
-		[TestMethod, TestCategory("Neuro")]
-		public void TestIris()
-		{
-			var examples = Util.LoadIrisDataSet();
-			examples.ShuffleRows();
-			var labels = examples.GetColumn(4);
-			examples.RemoveColumn(4);
-
-			for (var i = 0; i < examples.Rows; i++) {
-				examples[i].Standardize();
-			}
-
-			// expand labels
-			var labelMatrix = new Matrix(labels.Length, 3); // 3 classes
-			for (var i = 0; i < labels.Length; i++) {
-				var c = MathUtil.RoundToInt(labels[i]);
-				labelMatrix[i][c] = 1.0;
-			}
-
-			var trainSize = MathUtil.RoundToInt(examples.Rows * 0.8);
-			var testSize = examples.Rows - trainSize;
-			var trainData = examples.Take(trainSize);
-			var trainLabels = labelMatrix.Take(trainSize);
-			var testData = examples.Skip(trainSize);
-			var testLabels = new int[testSize];
-			for (var i = 0; i < testSize; i++) {
-				testLabels[i] = MathUtil.RoundToInt(labels[trainSize + i]);
-			}
-
-			var pg = new PositiveUniformParameterGenerator();
-			var neuronFactor = new NeuronFactory(pg);
-			var synapseFactory = new SynapseFactory(pg);
-
-			var n = NetworkFactory.CreateMultilayerPerceptron(new[] { 4, 4, 3 }, ActivationFunction.Sigmoid,
-				ActivationFunction.Sigmoid, null, neuronFactor,
-				synapseFactory);
-			var trainer = new NetworkTrainer(n, 0.3, 0.01);
-
-			trainer.Train(trainData, trainLabels, 1000);
-
-			var predictions = n.Classify(testData);
-			var ca = StatisticsUtil.ClassificationAccuracy(testLabels, predictions);
-
-			Assert.IsTrue(ca >= 0.9);
-		}
 	}
 }

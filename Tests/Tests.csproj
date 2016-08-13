@@ -69,11 +69,6 @@
       <Name>Brain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\Iris.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
