@@ -3,9 +3,9 @@
   public interface IBody
   {
     void Reset();
-    void Update(double[] outputs);
+    void Activate(double[] outputs);
     bool HasFinished();
-    double[] ProvideNetworkWithInputs();
+    double[] GetInputs();
 
     int InputCount { get; }
     int OutputCount { get; }

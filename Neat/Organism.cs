@@ -36,9 +36,9 @@
     public void Update()
     {
       if (!_body.HasFinished()) {
-        var inputs = _body.ProvideNetworkWithInputs();
+        var inputs = _body.GetInputs();
         var outputs = Phenotype.Compute(inputs);
-        _body.Update(outputs);
+        _body.Activate(outputs);
         _isFitnessUpdated = false;
       }
     }

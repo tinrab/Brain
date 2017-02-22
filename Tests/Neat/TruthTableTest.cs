@@ -51,7 +51,7 @@ namespace Tests.Neat
         _error = 0.0;
       }
 
-      public void Update(double[] outputs)
+      public void Activate(double[] outputs)
       {
         var predicted = outputs[0] > outputs[1] ? 0 : 1;
         var actual = Expression();
@@ -78,7 +78,7 @@ namespace Tests.Neat
         return _row > (1 << InputCount);
       }
 
-      public double[] ProvideNetworkWithInputs()
+      public double[] GetInputs()
       {
         var inputs = new double[InputCount];
 
