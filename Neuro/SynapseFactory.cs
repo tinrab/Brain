@@ -2,33 +2,33 @@
 
 namespace Brain.Neuro
 {
-	public class SynapseFactory
-	{
-		private readonly IParameterGenerator _parameterGenerator;
+  public class SynapseFactory
+  {
+    private readonly IParameterGenerator _parameterGenerator;
 
-		public SynapseFactory()
-		{
-			_parameterGenerator = new BasicParameterGenerator();
-		}
+    public SynapseFactory()
+    {
+      _parameterGenerator = new BasicParameterGenerator();
+    }
 
-		public SynapseFactory(IParameterGenerator parameterGenerator)
-		{
-			_parameterGenerator = parameterGenerator;
-		}
+    public SynapseFactory(IParameterGenerator parameterGenerator)
+    {
+      _parameterGenerator = parameterGenerator;
+    }
 
-		public Synapse Link(Neuron source, Neuron destination, IRegularizationFunction regularization = null)
-		{
-			var s = new Synapse {
-				Source = source,
-				Destination = destination,
-				Regularization = regularization,
-				Weight = _parameterGenerator.GenerateSynapseWeight()
-			};
+    public Synapse Link(Neuron source, Neuron destination, IRegularizationFunction regularization = null)
+    {
+      var s = new Synapse {
+        Source = source,
+        Destination = destination,
+        Regularization = regularization,
+        Weight = _parameterGenerator.GenerateSynapseWeight()
+      };
 
-			source.Outputs.Add(s);
-			destination.Inputs.Add(s);
+      source.Outputs.Add(s);
+      destination.Inputs.Add(s);
 
-			return s;
-		}
-	}
+      return s;
+    }
+  }
 }

@@ -2,8 +2,8 @@
 
 namespace Brain.Neuro
 {
-	public static class ErrorFunction
-	{
-		public static IErrorFunction Square = new SquareErrorFunction();
-	}
+  public static class ErrorFunction
+  {
+    public static IErrorFunction Square = new SquareErrorFunction();
+  }
 }

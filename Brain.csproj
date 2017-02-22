@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Brain</RootNamespace>
     <AssemblyName>Brain</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -63,6 +63,17 @@
     <Compile Include="Math\MathUtil.cs" />
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
+    <Compile Include="Neat\IBody.cs" />
+    <Compile Include="Neat\InnovationCacher.cs" />
+    <Compile Include="Neat\Neat.cs" />
+    <Compile Include="Neat\NeatChromosome.cs" />
+    <Compile Include="Neat\NeatGene.cs" />
+    <Compile Include="Neat\NeatNeuron.cs" />
+    <Compile Include="Neat\NeuroEvolution.cs" />
+    <Compile Include="Neat\Organism.cs" />
+    <Compile Include="Neat\Phenotype.cs" />
+    <Compile Include="Neat\Species.cs" />
+    <Compile Include="Neat\SpeciesManager.cs" />
     <Compile Include="Neuro\ActivationFunction.cs" />
     <Compile Include="Neuro\ErrorFunction.cs" />
     <Compile Include="Neuro\Errors\SquareErrorFunction.cs" />
@@ -86,7 +97,7 @@
     <Compile Include="Neuro\SynapseFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Math\StatisticsUtil.cs" />
-    <Compile Include="Utility\Util.cs" />
+    <Compile Include="Utility\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

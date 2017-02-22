@@ -2,53 +2,53 @@
 
 namespace Brain.Evolution
 {
-	public class Population
-	{
-		public Population(Chromosome first, int minSize, int maxSize)
-		{
-			MinSize = minSize;
-			MaxSize = maxSize;
-			Chromosomes = new List<Chromosome>();
+  public class Population
+  {
+    public int Size
+    {
+      get { return Chromosomes.Count; }
+    }
 
-			Chromosomes.Add(first.Clone());
-			while (Chromosomes.Count < MinSize) {
-				Chromosomes.Add(first.CreateNew());
-			}
-		}
+    public Chromosome this[int index]
+    {
+      get { return Chromosomes[index]; }
+      set { Chromosomes[index] = value; }
+    }
 
-		public int Size
-		{
-			get { return Chromosomes.Count; }
-		}
+    public List<Chromosome> Chromosomes { get; set; }
+    public int MaxSize { get; set; }
+    public int MinSize { get; set; }
 
-		public Chromosome this[int index]
-		{
-			get { return Chromosomes[index]; }
-			set { Chromosomes[index] = value; }
-		}
+    public Population(Chromosome first, int minSize, int maxSize)
+    {
+      MinSize = minSize;
+      MaxSize = maxSize;
+      Chromosomes = new List<Chromosome>();
 
-		public List<Chromosome> Chromosomes { get; set; }
-		public int MaxSize { get; set; }
-		public int MinSize { get; set; }
+      Chromosomes.Add(first.Clone());
+      while (Chromosomes.Count < MinSize) {
+        Chromosomes.Add(first.CreateNew());
+      }
+    }
 
-		public void Reset(List<Chromosome> chromosomes)
-		{
-			Chromosomes = chromosomes;
-		}
+    public void Reset(List<Chromosome> chromosomes)
+    {
+      Chromosomes = chromosomes;
+    }
 
-		public Chromosome FindFittest()
-		{
-			var best = Chromosomes[0];
+    public Chromosome FindFittest()
+    {
+      var best = Chromosomes[0];
 
-			for (var i = 1; i < Chromosomes.Count; i++) {
-				var c = Chromosomes[i];
+      for (var i = 1; i < Chromosomes.Count; i++) {
+        var c = Chromosomes[i];
 
-				if (c.Fitness > best.Fitness) {
-					best = c;
-				}
-			}
+        if (c.Fitness > best.Fitness) {
+          best = c;
+        }
+      }
 
-			return best;
-		}
-	}
+      return best;
+    }
+  }
 }

@@ -2,11 +2,11 @@
 
 namespace Brain.Evolution.Reinsertions
 {
-	public class PureReinsertion : IReinsertion
-	{
-		public List<Chromosome> Select(Population population, List<Chromosome> parents, List<Chromosome> offspring)
-		{
-			return offspring;
-		}
-	}
+  public class PureReinsertion : IReinsertion
+  {
+    public List<Chromosome> Select(Population population, List<Chromosome> parents, List<Chromosome> offspring)
+    {
+      return offspring;
+    }
+  }
 }

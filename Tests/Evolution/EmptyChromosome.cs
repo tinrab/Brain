@@ -2,28 +2,27 @@
 
 namespace Tests.Evolution
 {
-	internal class EmptyChromosome : Chromosome
-	{
-		public EmptyChromosome() {}
+  internal class EmptyChromosome : Chromosome
+  {
+    public int Index { get; set; }
+    public EmptyChromosome() {}
 
-		public EmptyChromosome(int index, double fitness)
-		{
-			Index = index;
-			Fitness = fitness;
-		}
+    public EmptyChromosome(int index, double fitness)
+    {
+      Index = index;
+      Fitness = fitness;
+    }
 
-		public int Index { get; set; }
+    public override Chromosome CreateNew()
+    {
+      return new EmptyChromosome();
+    }
 
-		public override Chromosome CreateNew()
-		{
-			return new EmptyChromosome();
-		}
+    public override Chromosome Clone()
+    {
+      return new EmptyChromosome(Index, Fitness);
+    }
 
-		public override Chromosome Clone()
-		{
-			return new EmptyChromosome(Index, Fitness);
-		}
-
-		public override void Mutate() {}
-	}
+    public override void Mutate() {}
+  }
 }
